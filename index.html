@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FineSpot Group - From Idea to Success</title>
     <meta name="description" content="FineSpot Group - The Powerhouse Behind Growing Businesses. Expert sales, marketing, and AI technology solutions.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -14,93 +17,186 @@
         }
 
         :root {
-            --primary-red: #dc2626;
-            --dark-red: #b91c1c;
-            --light-red: #ef4444;
-            --black: #000000;
+            /* Premium Color Palette */
+            --primary-blue: #1e40af;
+            --dark-blue: #1e3a8a;
+            --light-blue: #3b82f6;
+            --accent-gold: #f59e0b;
+            --dark-gold: #d97706;
+            --light-gold: #fbbf24;
+            
+            /* Neutrals */
             --white: #ffffff;
+            --gray-50: #f9fafb;
             --gray-100: #f3f4f6;
             --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
             --gray-800: #1f2937;
             --gray-900: #111827;
+            --black: #000000;
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--accent-gold) 0%, var(--dark-gold) 100%);
+            --gradient-dark: linear-gradient(135deg, var(--gray-900) 0%, var(--black) 100%);
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            
+            /* Typography */
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         html {
             scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: var(--gray-800);
             overflow-x: hidden;
         }
 
-        /* Header */
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            color: var(--gray-800);
+            overflow-x: hidden;
+            background: var(--white);
+        }
+
+        /* Header - Mobile First */
         .header {
             position: fixed;
             top: 0;
-            width: 100%;
+            left: 0;
+            right: 0;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            transition: all 0.3s ease;
+            backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--gray-200);
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .header.scrolled {
             background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-lg);
         }
 
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px;
+            height: 70px;
         }
 
         .logo {
             display: flex;
             align-items: center;
             gap: 12px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-red);
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-blue);
             text-decoration: none;
+            z-index: 1001;
         }
 
         .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--primary-red);
+            width: 36px;
+            height: 36px;
+            background: var(--gradient-primary);
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-weight: bold;
+            font-weight: 700;
+            font-size: 0.9rem;
         }
 
+        /* Mobile Navigation */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            z-index: 1001;
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu-btn.active {
+            transform: rotate(90deg);
+        }
+
+        .hamburger {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--gray-800);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 2px;
+            background: var(--gray-800);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger::before {
+            top: -8px;
+        }
+
+        .hamburger::after {
+            top: 8px;
+        }
+
+        .mobile-menu-btn.active .hamburger {
+            background: transparent;
+        }
+
+        .mobile-menu-btn.active .hamburger::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+
+        .mobile-menu-btn.active .hamburger::after {
+            transform: rotate(-45deg);
+            top: 0;
+        }
+
+        /* Desktop Navigation */
         .nav-menu {
             display: flex;
             list-style: none;
             gap: 2rem;
+            margin: 0;
+            padding: 0;
         }
 
         .nav-menu a {
             text-decoration: none;
-            color: var(--gray-800);
+            color: var(--gray-700);
             font-weight: 500;
-            transition: color 0.3s ease;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
             position: relative;
+            padding: 0.5rem 0;
         }
 
         .nav-menu a:hover {
-            color: var(--primary-red);
+            color: var(--primary-blue);
         }
 
         .nav-menu a::after {
@@ -108,9 +204,9 @@
             position: absolute;
             width: 0;
             height: 2px;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
-            background: var(--primary-red);
+            background: var(--primary-blue);
             transition: width 0.3s ease;
         }
 
@@ -118,39 +214,111 @@
             width: 100%;
         }
 
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--gray-800);
-        }
-
         .cta-btn {
-            background: var(--primary-red);
+            background: var(--gradient-primary);
             color: white;
-            padding: 12px 24px;
-            border-radius: 50px;
+            padding: 10px 20px;
+            border-radius: 25px;
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
-            transform: translateY(0);
+            box-shadow: var(--shadow-md);
         }
 
         .cta-btn:hover {
-            background: var(--dark-red);
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Mobile Navigation Overlay */
+        .nav-overlay {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(17, 24, 39, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav-menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            gap: 2rem;
+        }
+
+        .mobile-nav-menu a {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .nav-overlay.active .mobile-nav-menu a {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-nav-menu a:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-nav-menu a:nth-child(2) { transition-delay: 0.2s; }
+        .mobile-nav-menu a:nth-child(3) { transition-delay: 0.3s; }
+        .mobile-nav-menu a:nth-child(4) { transition-delay: 0.4s; }
+        .mobile-nav-menu a:nth-child(5) { transition-delay: 0.5s; }
+
+        .mobile-nav-menu a:hover {
+            color: var(--accent-gold);
+            transform: scale(1.1);
+        }
+
+        .mobile-cta {
+            margin-top: 2rem;
+            padding: 16px 32px;
+            background: var(--gradient-accent);
+            border-radius: 30px;
+            color: var(--gray-900);
+            font-weight: 700;
+            text-decoration: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            transition-delay: 0.6s;
+        }
+
+        .nav-overlay.active .mobile-cta {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
         }
 
         /* Hero Section */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(135deg, var(--gray-900) 0%, var(--black) 100%);
+            background: var(--gradient-dark);
             display: flex;
             align-items: center;
-            padding: 80px 0 0;
+            padding: 80px 0 40px;
             position: relative;
             overflow: hidden;
         }
@@ -162,20 +330,17 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
-            opacity: 0.1;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
         }
 
         .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1fr;
+            gap: 3rem;
             align-items: center;
             position: relative;
             z-index: 1;
+            text-align: center;
         }
 
         .hero-content {
@@ -183,48 +348,56 @@
         }
 
         .hero-title {
-            font-size: 3.5rem;
-            font-weight: 800;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
             color: white;
             margin-bottom: 1.5rem;
-            line-height: 1.1;
+            line-height: 1.2;
         }
 
         .hero-title .highlight {
-            color: var(--primary-red);
-            position: relative;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--gray-200);
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: var(--gray-300);
             margin-bottom: 2rem;
-            font-weight: 500;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-buttons {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 3rem;
         }
 
         .btn-primary {
-            background: var(--primary-red);
+            background: var(--gradient-primary);
             color: white;
             padding: 16px 32px;
-            border-radius: 50px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
+            font-size: 1rem;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            box-shadow: var(--shadow-lg);
         }
 
         .btn-primary:hover {
-            background: var(--dark-red);
             transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(220, 38, 38, 0.4);
+            box-shadow: var(--shadow-2xl);
         }
 
         .btn-secondary {
@@ -232,9 +405,10 @@
             color: white;
             padding: 16px 32px;
             border: 2px solid white;
-            border-radius: 50px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
+            font-size: 1rem;
             transition: all 0.3s ease;
         }
 
@@ -244,49 +418,30 @@
             transform: translateY(-3px);
         }
 
-        .hero-image {
-            position: relative;
+        .hero-visual {
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+            margin-top: 2rem;
         }
 
         .hero-circle {
-            width: 400px;
-            height: 400px;
-            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            width: clamp(280px, 50vw, 400px);
+            height: clamp(280px, 50vw, 400px);
+            background: var(--gradient-primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             animation: float 6s ease-in-out infinite;
-            box-shadow: 0 20px 60px rgba(220, 38, 38, 0.3);
+            box-shadow: 0 20px 60px rgba(30, 64, 175, 0.3);
         }
 
-        .service-badge {
-            position: absolute;
-            background: white;
-            padding: 12px 20px;
-            border-radius: 25px;
-            font-weight: 600;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        .badge-1 { top: 20%; left: -10%; animation-delay: 0s; }
-        .badge-2 { top: 60%; right: -10%; animation-delay: 0.5s; }
-        .badge-3 { bottom: 20%; left: 10%; animation-delay: 1s; }
-
-        /* Services Section */
-        .services {
-            padding: 100px 0;
-            background: var(--gray-100);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+        /* Sections */
+        .section {
+            padding: 80px 0;
+            position: relative;
         }
 
         .section-header {
@@ -295,60 +450,97 @@
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 4vw, 2.5rem);
             font-weight: 800;
             color: var(--gray-900);
             margin-bottom: 1rem;
         }
 
         .section-subtitle {
-            font-size: 1.25rem;
+            font-size: clamp(1rem, 2vw, 1.25rem);
             color: var(--gray-600);
             max-width: 600px;
             margin: 0 auto;
         }
 
+        /* Bizcontrol Section */
+        .bizcontrol {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e3a8a 100%);
+            color: white;
+            overflow: hidden;
+        }
+
+        .bizcontrol-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+            text-align: center;
+        }
+
+        .bizcontrol-badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--accent-gold);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .bizcontrol-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .bizcontrol-highlight {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .bizcontrol-visual {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 2rem;
+        }
+
+        /* Services Grid */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
         .service-card {
             background: white;
-            padding: 2.5rem;
+            padding: 2rem;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-lg);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-red), var(--light-red));
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
+            border-top: 4px solid var(--primary-blue);
         }
 
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
+            box-shadow: var(--shadow-2xl);
         }
 
         .service-icon {
             width: 60px;
             height: 60px;
-            background: var(--primary-red);
+            background: var(--gradient-primary);
             border-radius: 15px;
             display: flex;
             align-items: center;
@@ -359,7 +551,7 @@
         }
 
         .service-title {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: var(--gray-900);
             margin-bottom: 1rem;
@@ -367,133 +559,66 @@
 
         .service-description {
             color: var(--gray-600);
-            line-height: 1.8;
+            line-height: 1.7;
         }
 
         /* About Section */
-        .about {
-            padding: 100px 0;
-            background: white;
-        }
-
         .about-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1fr;
+            gap: 3rem;
             align-items: center;
-        }
-
-        .about-content h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--gray-900);
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .about-content p {
-            font-size: 1.1rem;
-            color: var(--gray-600);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
+            text-align: center;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             gap: 1.5rem;
             margin-top: 2rem;
         }
 
         .stat-item {
             text-align: center;
-            padding: 1.5rem;
-            background: var(--gray-100);
+            padding: 1.5rem 1rem;
+            background: var(--gray-50);
             border-radius: 15px;
+            border: 1px solid var(--gray-200);
         }
 
         .stat-number {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 3vw, 2rem);
             font-weight: 800;
-            color: var(--primary-red);
+            color: var(--primary-blue);
         }
 
         .stat-label {
             font-size: 0.9rem;
             color: var(--gray-600);
             font-weight: 600;
-        }
-
-        .about-image {
-            position: relative;
-        }
-
-        .about-img {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-            font-weight: bold;
+            margin-top: 0.5rem;
         }
 
         /* Contact Section */
         .contact {
-            padding: 100px 0;
-            background: var(--gray-900);
+            background: var(--gradient-dark);
             color: white;
         }
 
         .contact-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .contact-info h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-info p {
-            font-size: 1.1rem;
-            color: var(--gray-300);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .contact-details {
-            space-y: 1rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--primary-red);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            grid-template-columns: 1fr;
+            gap: 3rem;
         }
 
         .contact-form {
             background: white;
-            padding: 2.5rem;
+            padding: 2rem;
             border-radius: 20px;
             color: var(--gray-800);
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
         }
 
         .form-group {
@@ -508,19 +633,22 @@
         }
 
         .form-group input,
+        .form-group select,
         .form-group textarea {
             width: 100%;
             padding: 12px 16px;
             border: 2px solid var(--gray-200);
             border-radius: 10px;
             font-size: 1rem;
+            font-family: inherit;
             transition: border-color 0.3s ease;
         }
 
         .form-group input:focus,
+        .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: var(--primary-red);
+            border-color: var(--primary-blue);
         }
 
         .form-group textarea {
@@ -530,7 +658,7 @@
 
         .submit-btn {
             width: 100%;
-            background: var(--primary-red);
+            background: var(--gradient-primary);
             color: white;
             padding: 16px;
             border: none;
@@ -539,11 +667,18 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-family: inherit;
         }
 
         .submit-btn:hover {
-            background: var(--dark-red);
             transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
         }
 
         /* Footer */
@@ -561,10 +696,10 @@
         }
 
         .footer-section h3 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            color: var(--primary-red);
+            color: var(--accent-gold);
         }
 
         .footer-section p,
@@ -577,7 +712,7 @@
         }
 
         .footer-section a:hover {
-            color: var(--primary-red);
+            color: var(--accent-gold);
         }
 
         .footer-bottom {
@@ -587,35 +722,11 @@
             color: var(--gray-400);
         }
 
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            background: var(--gray-800);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background: var(--primary-red);
-            transform: translateY(-3px);
-        }
-
         /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(50px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -628,94 +739,106 @@
             50% { transform: translateY(-20px); }
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background: white;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                transition: left 0.3s ease;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            }
-
-            .nav-menu.active {
-                left: 0;
-            }
-
             .mobile-menu-btn {
                 display: block;
             }
 
-            .hero-container,
-            .about-container,
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-circle {
-                width: 300px;
-                height: 300px;
-            }
-
-            .service-badge {
+            .nav-menu {
                 display: none;
             }
 
-            .section-title {
-                font-size: 2rem;
+            .cta-btn {
+                display: none;
             }
 
             .nav-container {
+                height: 70px;
                 padding: 0 1rem;
             }
 
-            .container {
-                padding: 0 1rem;
+            .hero {
+                padding: 80px 0 40px;
+                min-height: auto;
             }
 
             .hero-buttons {
-                justify-content: center;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .service-card,
-            .contact-form {
-                padding: 1.5rem;
+                flex-direction: column;
+                align-items: center;
             }
 
             .btn-primary,
             .btn-secondary {
-                padding: 12px 24px;
-                font-size: 0.9rem;
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 769px) {
+            .hero-container {
+                grid-template-columns: 1fr 1fr;
+                text-align: left;
+            }
+
+            .hero-buttons {
+                justify-content: flex-start;
+            }
+
+            .bizcontrol-container {
+                grid-template-columns: 1fr 1fr;
+                text-align: left;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr 1fr;
+                text-align: left;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .contact-form {
+                margin: 0;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                padding: 0 2rem;
+            }
+
+            .nav-container {
+                padding: 0 2rem;
             }
         }
 
@@ -726,7 +849,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--gray-900);
+            background: var(--gradient-dark);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -742,8 +865,8 @@
         .loader {
             width: 50px;
             height: 50px;
-            border: 5px solid var(--gray-700);
-            border-top: 5px solid var(--primary-red);
+            border: 3px solid var(--gray-700);
+            border-top: 3px solid var(--accent-gold);
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -753,16 +876,35 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow-xl);
+            z-index: 10001;
+            animation: slideInRight 0.3s ease;
+            max-width: 300px;
         }
 
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .notification.success {
+            background: var(--gradient-accent);
+            color: var(--gray-900);
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -780,7 +922,8 @@
                 <span>FineSpot Group</span>
             </a>
             
-            <nav class="nav-menu" id="navMenu">
+            <!-- Desktop Navigation -->
+            <nav class="nav-menu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#bizcontrol">Bizcontrol Pro</a></li>
                 <li><a href="#services">Services</a></li>
@@ -788,71 +931,73 @@
                 <li><a href="#contact">Contact</a></li>
             </nav>
             
-            <a href="#bizcontrol" class="cta-btn">Get Bizcontrol Today</a>
+            <a href="#bizcontrol" class="cta-btn">Get Bizcontrol Pro</a>
             
+            <!-- Mobile Menu Button -->
             <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <span id="menuIcon">☰</span>
+                <span class="hamburger"></span>
             </button>
         </div>
     </header>
 
+    <!-- Mobile Navigation Overlay -->
+    <div class="nav-overlay" id="navOverlay">
+        <div class="mobile-nav-menu">
+            <a href="#home">Home</a>
+            <a href="#bizcontrol">Bizcontrol Pro</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#bizcontrol" class="mobile-cta">Get Bizcontrol Pro</a>
+        </div>
+    </div>
+
     <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    From <span class="highlight">Idea</span> to Success.<br>
-                    We are the <span class="highlight">Powerhouse</span><br>
-                    Behind Growing Businesses
-                </h1>
-                <p class="hero-subtitle">
-                    Expert sales, marketing, and AI technology solutions to transform your business vision into measurable success. Featuring our revolutionary <strong style="color: var(--primary-red);">Bizcontrol Pro</strong> - the ultimate business automation platform.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#bizcontrol" class="btn-primary">
-                        Get Bizcontrol Pro
-                        <span>🚀</span>
-                    </a>
-                    <a href="#services" class="btn-secondary">Our Services</a>
+    <section class="hero section" id="home">
+        <div class="container">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        From <span class="highlight">Idea</span> to Success.<br>
+                        We are the <span class="highlight">Powerhouse</span><br>
+                        Behind Growing Businesses
+                    </h1>
+                    <p class="hero-subtitle">
+                        Expert sales, marketing, and AI technology solutions to transform your business vision into measurable success. Featuring our revolutionary <strong style="color: var(--accent-gold);">Bizcontrol Pro</strong> - the ultimate business automation platform.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#bizcontrol" class="btn-primary">Get Bizcontrol Pro</a>
+                        <a href="#services" class="btn-secondary">Our Services</a>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="hero-image">
-                <div class="hero-circle">
-                    <div style="font-size: 4rem;">🚀</div>
+                
+                <div class="hero-visual">
+                    <div class="hero-circle">
+                        <div style="font-size: 4rem;">🚀</div>
+                    </div>
                 </div>
-                <div class="service-badge badge-1">Bizcontrol Pro</div>
-                <div class="service-badge badge-2">AI Automation</div>
-                <div class="service-badge badge-3">Real-Time Reports</div>
             </div>
         </div>
     </section>
 
     <!-- Bizcontrol Pro Section -->
-    <section class="bizcontrol" id="bizcontrol" style="padding: 100px 0; background: linear-gradient(135deg, #38003f 0%, #210130 50%, #16002b 100%); color: white; position: relative; overflow: hidden;">
-        <!-- Animated Background Elements -->
-        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.1;">
-            <div style="position: absolute; top: 20%; left: 10%; width: 100px; height: 100px; background: white; border-radius: 50%; animation: float 6s ease-in-out infinite;"></div>
-            <div style="position: absolute; top: 60%; right: 15%; width: 150px; height: 150px; background: white; border-radius: 50%; animation: float 8s ease-in-out infinite reverse;"></div>
-            <div style="position: absolute; bottom: 20%; left: 20%; width: 80px; height: 80px; background: white; border-radius: 50%; animation: float 5s ease-in-out infinite;"></div>
-        </div>
-
-        <div class="container" style="position: relative; z-index: 1;">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+    <section class="bizcontrol section" id="bizcontrol">
+        <div class="container">
+            <div class="bizcontrol-container">
                 <div class="bizcontrol-content fade-in">
-                    <div style="display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 25px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; backdrop-filter: blur(10px);">
+                    <div class="bizcontrol-badge">
                         🤖 AI-Powered Business Automation
                     </div>
                     
-                    <h2 style="font-size: 3rem; font-weight: 900; margin-bottom: 1.5rem; line-height: 1.1;">
-                        <span style="background: linear-gradient(45deg, #fbbf24, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Bizcontrol</span> <span style="font-style: italic; color: rgba(255,255,255,0.9);">pro</span>
+                    <h2 class="bizcontrol-title">
+                        <span class="bizcontrol-highlight">Bizcontrol</span> <span style="font-style: italic; opacity: 0.9;">pro</span>
                     </h2>
                     
-                    <h3 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem; color: #fbbf24;">
+                    <h3 style="font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin-bottom: 1rem; color: var(--accent-gold);">
                         Automate <span style="color: white; font-style: italic;">all</span> Your Business
                     </h3>
                     
-                    <p style="font-size: 1.3rem; margin-bottom: 1rem; opacity: 0.95; font-weight: 500;">
+                    <p style="font-size: clamp(1.1rem, 2vw, 1.3rem); margin-bottom: 1rem; opacity: 0.95; font-weight: 500;">
                         Reports in just a click
                     </p>
                     
@@ -860,49 +1005,39 @@
                         It's time to truly control the business! Just put in the data & let Bizcontrol do the rest of analysis and calculations in real time.
                     </p>
                     
-                    <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
-                        <a href="#bizcontrol-demo" class="btn-primary" style="background: #fbbf24; color: #1f2937; font-weight: 700; padding: 18px 36px;">
+                    <div style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; justify-content: center;">
+                        <a href="#contact" class="btn-primary" style="background: var(--gradient-accent); color: var(--gray-900); font-weight: 700;">
                             🚀 Get a FREE Consultation Call
                         </a>
-                        <a href="#bizcontrol-features" class="btn-secondary" style="border-color: #fbbf24; color: #fbbf24;">
+                        <a href="#bizcontrol-features" class="btn-secondary" style="border-color: var(--accent-gold); color: var(--accent-gold);">
                             See Features
                         </a>
                     </div>
                     
-                    <div style="display: flex; align-items: center; gap: 1rem; opacity: 0.9;">
-                        <span style="color: #fbbf24; font-size: 1.2rem;">✓</span>
+                    <div style="display: flex; align-items: center; gap: 1rem; opacity: 0.9; justify-content: center; flex-wrap: wrap;">
+                        <span style="color: var(--accent-gold); font-size: 1.2rem;">✓</span>
                         <span>Quick onboarding process</span>
-                        <span style="color: #fbbf24; font-size: 1.2rem;">✓</span>
+                        <span style="color: var(--accent-gold); font-size: 1.2rem;">✓</span>
                         <span>Setup in 5 Minutes</span>
                     </div>
                 </div>
                 
-                <div class="bizcontrol-visual fade-in" style="position: relative;">
-                    <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(20px); border-radius: 20px; padding: 2rem; border: 1px solid rgba(255,255,255,0.2);">
-                        <div style="text-align: center; margin-bottom: 2rem;">
-                            <div style="width: 80px; height: 80px; background: #fbbf24; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 2rem;">⚡</div>
-                            <h4 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem;">Real-Time Analytics</h4>
-                            <p style="opacity: 0.8;">Instant business insights</p>
-                        </div>
-                        
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                            <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; text-align: center;">
-                                <div style="color: #fbbf24; font-size: 1.5rem; font-weight: bold;">$45K</div>
-                                <div style="font-size: 0.8rem; opacity: 0.8;">Monthly Revenue</div>
-                            </div>
-                            <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; text-align: center;">
-                                <div style="color: #10b981; font-size: 1.5rem; font-weight: bold;">+23%</div>
-                                <div style="font-size: 0.8rem; opacity: 0.8;">Growth Rate</div>
-                            </div>
-                        </div>
+                <div class="bizcontrol-visual fade-in">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <div style="width: 80px; height: 80px; background: var(--gradient-accent); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 2rem;">⚡</div>
+                        <h4 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem;">Real-Time Analytics</h4>
+                        <p style="opacity: 0.8;">Instant business insights</p>
                     </div>
                     
-                    <!-- Floating Elements -->
-                    <div style="position: absolute; top: -20px; right: -20px; width: 60px; height: 60px; background: #fbbf24; border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: bounce 2s ease-in-out infinite;">
-                        📊
-                    </div>
-                    <div style="position: absolute; bottom: -15px; left: -15px; width: 50px; height: 50px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: bounce 2s ease-in-out infinite; animation-delay: 1s;">
-                        💰
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; text-align: center;">
+                            <div style="color: var(--accent-gold); font-size: 1.5rem; font-weight: bold;">$45K</div>
+                            <div style="font-size: 0.8rem; opacity: 0.8;">Monthly Revenue</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; text-align: center;">
+                            <div style="color: #10b981; font-size: 1.5rem; font-weight: bold;">+23%</div>
+                            <div style="font-size: 0.8rem; opacity: 0.8;">Growth Rate</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -910,112 +1045,85 @@
     </section>
 
     <!-- Bizcontrol Features Section -->
-    <section class="bizcontrol-features" id="bizcontrol-features" style="padding: 100px 0; background: #f8fafc;">
+    <section class="section" id="bizcontrol-features" style="background: var(--gray-50);">
         <div class="container">
             <div class="section-header fade-in">
-                <h2 class="section-title" style="color: #6b46c1;">
-                    Everything Your Business Needs in <span style="color: #fbbf24;">One Platform</span>
+                <h2 class="section-title">
+                    Everything Your Business Needs in <span style="color: var(--accent-gold);">One Platform</span>
                 </h2>
                 <p class="section-subtitle">
                     Stop juggling multiple tools. Bizcontrol Pro handles all your business operations seamlessly.
                 </p>
             </div>
             
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
-                <div class="service-card fade-in" style="border-left: 4px solid #6b46c1;">
-                    <div class="service-icon" style="background: #6b46c1;">📈</div>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">📈</div>
                     <h3 class="service-title">Sales Reports</h3>
                     <p class="service-description">
                         Comprehensive sales analytics with real-time tracking, performance metrics, and revenue forecasting.
                     </p>
                 </div>
                 
-                <div class="service-card fade-in" style="border-left: 4px solid #8b5cf6;">
-                    <div class="service-icon" style="background: #8b5cf6;">💸</div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">💸</div>
                     <h3 class="service-title">Expenses Report</h3>
                     <p class="service-description">
                         Automated expense tracking, categorization, and detailed spending analysis for better cost control.
                     </p>
                 </div>
                 
-                <div class="service-card fade-in" style="border-left: 4px solid #a855f7;">
-                    <div class="service-icon" style="background: #a855f7;">👥</div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">👥</div>
                     <h3 class="service-title">Payroll Report</h3>
                     <p class="service-description">
                         Complete payroll management with automated calculations, tax deductions, and employee records.
                     </p>
                 </div>
                 
-                <div class="service-card fade-in" style="border-left: 4px solid #6b46c1;">
-                    <div class="service-icon" style="background: #6b46c1;">⚖️</div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">⚖️</div>
                     <h3 class="service-title">Balance Sheet</h3>
                     <p class="service-description">
                         Real-time balance sheet generation with assets, liabilities, and equity tracking.
                     </p>
                 </div>
                 
-                <div class="service-card fade-in" style="border-left: 4px solid #8b5cf6;">
-                    <div class="service-icon" style="background: #8b5cf6;">📊</div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">📊</div>
                     <h3 class="service-title">Income Statement</h3>
                     <p class="service-description">
                         Automated P&L statements showing revenue, expenses, and profitability over any period.
                     </p>
                 </div>
                 
-                <div class="service-card fade-in" style="border-left: 4px solid #a855f7;">
-                    <div class="service-icon" style="background: #a855f7;">💰</div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">💰</div>
                     <h3 class="service-title">Cash Flow Statement</h3>
                     <p class="service-description">
                         Monitor cash inflows and outflows with detailed cash flow analysis and projections.
                     </p>
                 </div>
-                
-                <div class="service-card fade-in" style="border-left: 4px solid #6b46c1;">
-                    <div class="service-icon" style="background: #6b46c1;">📋</div>
-                    <h3 class="service-title">Generate Quotations</h3>
-                    <p class="service-description">
-                        Professional quotation generation with customizable templates and automated follow-ups.
-                    </p>
-                </div>
-                
-                <div class="service-card fade-in" style="border-left: 4px solid #8b5cf6;">
-                    <div class="service-icon" style="background: #8b5cf6;">🧾</div>
-                    <h3 class="service-title">POS & Receipts</h3>
-                    <p class="service-description">
-                        Smart receipt scanning, automated invoicing, and payment tracking in one seamless flow.
-                    </p>
-                </div>
-                
-                <div class="service-card fade-in" style="border-left: 4px solid #a855f7;">
-                    <div class="service-icon" style="background: #a855f7;">⚙️</div>
-                    <h3 class="service-title">And Much More...</h3>
-                    <p class="service-description">
-                        Inventory management, customer CRM, automated reporting, tax calculations, and advanced analytics.
-                    </p>
-                </div>
             </div>
             
-            <div style="text-align: center;">
-                <div style="background: linear-gradient(135deg, #6b46c1, #8b5cf6); padding: 3rem; border-radius: 20px; color: white; max-width: 800px; margin: 0 auto;">
-                    <h3 style="font-size: 2rem; font-weight: 800; margin-bottom: 1rem;">
+            <div style="text-align: center; margin-top: 3rem;">
+                <div style="background: var(--gradient-primary); padding: 3rem 2rem; border-radius: 20px; color: white; max-width: 800px; margin: 0 auto;">
+                    <h3 style="font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; margin-bottom: 1rem;">
                         Ready to Automate Your Business?
                     </h3>
                     <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">
                         Join thousands of businesses already saving 20+ hours per week with Bizcontrol Pro
                     </p>
-                    <a href="#contact" class="btn-primary" style="background: #fbbf24; color: #1f2937; font-size: 1.1rem; padding: 18px 36px;">
+                    <a href="#contact" class="btn-primary" style="background: var(--gradient-accent); color: var(--gray-900); font-size: 1.1rem;">
                         🚀 Get Bizcontrol Pro Now
                     </a>
-                    <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
-                        Free consultaion - Fast onboarding
-                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section class="services" id="services">
+    <section class="section" id="services">
         <div class="container">
             <div class="section-header fade-in">
                 <h2 class="section-title">Beyond Bizcontrol Pro - Complete Business Solutions</h2>
@@ -1029,7 +1137,7 @@
                     <div class="service-icon">🏢</div>
                     <h3 class="service-title">Company Profiles</h3>
                     <p class="service-description">
-                        Professional company profile creation that showcases your brand's strength, values, and unique selling propositions to attract investors and customers.
+                        Professional company profile creation that showcases your brand's strength, values, and unique selling propositions.
                     </p>
                 </div>
                 
@@ -1037,7 +1145,7 @@
                     <div class="service-icon">🏷️</div>
                     <h3 class="service-title">Product Label Designs</h3>
                     <p class="service-description">
-                        Eye-catching product label designs that communicate your brand message clearly and help your products stand out in competitive markets.
+                        Eye-catching product label designs that communicate your brand message clearly and help products stand out.
                     </p>
                 </div>
                 
@@ -1045,31 +1153,15 @@
                     <div class="service-icon">📋</div>
                     <h3 class="service-title">Business Registration</h3>
                     <p class="service-description">
-                        Complete business registration services to get your company legally established and compliant with all regulatory requirements.
+                        Complete business registration services to get your company legally established and compliant.
                     </p>
                 </div>
                 
                 <div class="service-card fade-in">
                     <div class="service-icon">📄</div>
-                    <h3 class="service-title">Flyers, Tickets & Banners</h3>
+                    <h3 class="service-title">Marketing Materials</h3>
                     <p class="service-description">
-                        Creative marketing materials including flyers, event tickets, and promotional banners designed to maximize your marketing impact.
-                    </p>
-                </div>
-                
-                <div class="service-card fade-in">
-                    <div class="service-icon">📚</div>
-                    <h3 class="service-title">Book Covers & Publications</h3>
-                    <p class="service-description">
-                        Professional book cover designs and publication services that help authors and businesses create compelling printed materials.
-                    </p>
-                </div>
-                
-                <div class="service-card fade-in">
-                    <div class="service-icon">📢</div>
-                    <h3 class="service-title">Product Advertising</h3>
-                    <p class="service-description">
-                        Strategic product advertising campaigns across multiple channels to increase brand awareness and drive sales growth.
+                        Creative flyers, event tickets, and promotional banners designed to maximize your marketing impact.
                     </p>
                 </div>
                 
@@ -1077,7 +1169,7 @@
                     <div class="service-icon">💼</div>
                     <h3 class="service-title">Sales & Customer Service</h3>
                     <p class="service-description">
-                        Professional sales training and customer service optimization to improve client satisfaction and increase revenue.
+                        Professional sales training and customer service optimization to improve satisfaction and revenue.
                     </p>
                 </div>
                 
@@ -1085,7 +1177,7 @@
                     <div class="service-icon">🎯</div>
                     <h3 class="service-title">Executive Coaching</h3>
                     <p class="service-description">
-                        Personalized executive coaching programs to develop leadership skills and strategic thinking for business growth.
+                        Personalized executive coaching programs to develop leadership skills and strategic thinking.
                     </p>
                 </div>
             </div>
@@ -1093,16 +1185,18 @@
     </section>
 
     <!-- About Section -->
-    <section class="about" id="about">
+    <section class="section" id="about" style="background: var(--gray-50);">
         <div class="container">
             <div class="about-container">
-                <div class="about-content fade-in">
-                    <h2>YOU ARE <span style="color: var(--primary-red);">NEXT</span></h2>
-                    <p>
+                <div class="fade-in">
+                    <h2 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; margin-bottom: 1.5rem;">
+                        YOU ARE <span style="color: var(--primary-blue);">NEXT</span>
+                    </h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 1.5rem; line-height: 1.7;">
                         At FineSpot Group, we believe every business has the potential to achieve extraordinary success. Our comprehensive suite of services is designed to take your business from concept to market leadership.
                     </p>
-                    <p>
-                        With our proven track record and innovative approach, we've helped countless businesses transform their ideas into profitable ventures. Our team of experts combines traditional business wisdom with cutting-edge AI technology to deliver results that exceed expectations.
+                    <p style="font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.7;">
+                        With our proven track record and innovative approach, we've helped countless businesses transform their ideas into profitable ventures using cutting-edge AI technology.
                     </p>
                     
                     <div class="stats-grid">
@@ -1125,9 +1219,9 @@
                     </div>
                 </div>
                 
-                <div class="about-image fade-in">
-                    <div class="about-img">
-                        <img src="ban.png" alt="">
+                <div class="fade-in" style="display: flex; justify-content: center; align-items: center;">
+                    <div style="width: 100%; max-width: 400px; height: 300px; background: var(--gradient-primary); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem; font-weight: bold;">
+                        FG
                     </div>
                 </div>
             </div>
@@ -1135,36 +1229,38 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <section class="contact section" id="contact">
         <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title" style="color: white;">Reach Us Today</h2>
+                <p class="section-subtitle" style="color: var(--gray-300);">
+                    Ready to transform your business? Get in touch with our expert team and let's discuss how we can help you achieve your goals.
+                </p>
+            </div>
+
             <div class="contact-container">
-                <div class="contact-info fade-in">
-                    <h2>Reach Us Today</h2>
-                    <p>
-                        Ready to transform your business? Get in touch with our expert team and let's discuss how we can help you achieve your goals.
-                    </p>
-                    
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">📞</div>
-                            <div>
-                                <div style="font-weight: 600;">Phone</div>
+                <div class="fade-in" style="text-align: center;">
+                    <div style="display: flex; flex-direction: column; gap: 2rem; align-items: center;">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 50px; height: 50px; background: var(--gradient-accent); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">📞</div>
+                            <div style="text-align: left;">
+                                <div style="font-weight: 600; color: var(--accent-gold);">Phone</div>
                                 <div>+260973439949</div>
                             </div>
                         </div>
                         
-                        <div class="contact-item">
-                            <div class="contact-icon">📧</div>
-                            <div>
-                                <div style="font-weight: 600;">Email</div>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 50px; height: 50px; background: var(--gradient-accent); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">📧</div>
+                            <div style="text-align: left;">
+                                <div style="font-weight: 600; color: var(--accent-gold);">Email</div>
                                 <div>info@finespotgroup.com</div>
                             </div>
                         </div>
                         
-                        <div class="contact-item">
-                            <div class="contact-icon">📍</div>
-                            <div>
-                                <div style="font-weight: 600;">Location</div>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 50px; height: 50px; background: var(--gradient-accent); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">📍</div>
+                            <div style="text-align: left;">
+                                <div style="font-weight: 600; color: var(--accent-gold);">Location</div>
                                 <div>Livingstone, Southern Province, Zambia</div>
                             </div>
                         </div>
@@ -1172,7 +1268,7 @@
                 </div>
                 
                 <div class="contact-form fade-in">
-                    <h3 style="margin-bottom: 1.5rem; color: var(--gray-900);">Send us a Message</h3>
+                    <h3 style="margin-bottom: 1.5rem; color: var(--gray-900); text-align: center;">Send us a Message</h3>
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Full Name</label>
@@ -1191,15 +1287,13 @@
                         
                         <div class="form-group">
                             <label for="service">Service of Interest</label>
-                            <select id="service" name="service" style="width: 100%; padding: 12px 16px; border: 2px solid var(--gray-200); border-radius: 10px; font-size: 1rem;">
+                            <select id="service" name="service">
                                 <option value="">Select a service</option>
                                 <option value="bizcontrol-pro">🚀 Bizcontrol Pro (Most Popular)</option>
                                 <option value="company-profiles">Company Profiles</option>
                                 <option value="product-labels">Product Label Designs</option>
                                 <option value="business-registration">Business Registration</option>
-                                <option value="marketing-materials">Flyers, Tickets & Banners</option>
-                                <option value="publications">Book Covers & Publications</option>
-                                <option value="advertising">Product Advertising</option>
+                                <option value="marketing-materials">Marketing Materials</option>
                                 <option value="sales-service">Sales & Customer Service</option>
                                 <option value="executive-coaching">Executive Coaching</option>
                             </select>
@@ -1226,18 +1320,13 @@
                     <p>
                         Designing your spotlight moments. From idea to success, we are the powerhouse behind growing businesses.
                     </p>
-                    <p>
-                        Transform your vision into measurable results with our comprehensive business solutions.
-                    </p>
                 </div>
                 
                 <div class="footer-section">
                     <h3>Our Solutions</h3>
                     <a href="#bizcontrol">🚀 Bizcontrol Pro</a>
                     <a href="#services">Company Profiles</a>
-                    <a href="#services">Product Label Designs</a>
                     <a href="#services">Business Registration</a>
-                    <a href="#services">Marketing Materials</a>
                     <a href="#services">Executive Coaching</a>
                 </div>
                 
@@ -1259,13 +1348,6 @@
             </div>
             
             <div class="footer-bottom">
-                <div class="social-links">
-                    <a href="#" aria-label="Facebook">📘</a>
-                    <a href="#" aria-label="Twitter">🐦</a>
-                    <a href="#" aria-label="LinkedIn">💼</a>
-                    <a href="#" aria-label="Instagram">📷</a>
-                    <a href="#" aria-label="WhatsApp">💬</a>
-                </div>
                 <p>&copy; 2025 FineSpot Group. All rights reserved. Designing your spotlight moments.</p>
             </div>
         </div>
@@ -1292,20 +1374,30 @@
 
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
-        const menuIcon = document.getElementById('menuIcon');
+        const navOverlay = document.getElementById('navOverlay');
 
         mobileMenuBtn.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            menuIcon.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+            mobileMenuBtn.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+            document.body.style.overflow = navOverlay.classList.contains('active') ? 'hidden' : '';
         });
 
         // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
+        document.querySelectorAll('.mobile-nav-menu a').forEach(link => {
             link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                menuIcon.textContent = '☰';
+                mobileMenuBtn.classList.remove('active');
+                navOverlay.classList.remove('active');
+                document.body.style.overflow = '';
             });
+        });
+
+        // Close mobile menu when clicking overlay
+        navOverlay.addEventListener('click', function(e) {
+            if (e.target === navOverlay) {
+                mobileMenuBtn.classList.remove('active');
+                navOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         });
 
         // Smooth scrolling for anchor links
@@ -1314,7 +1406,7 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    const headerHeight = 80;
+                    const headerHeight = 70;
                     const targetPosition = target.offsetTop - headerHeight;
                     
                     window.scrollTo({
@@ -1346,40 +1438,32 @@
 
         // Form submission
         const contactForm = document.getElementById('contactForm');
+        const submitBtn = contactForm.querySelector('.submit-btn');
+        const originalText = submitBtn.textContent;
+
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Get form data
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData);
+            // Show loading state
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
             
-            // Show success message (replace with actual form submission logic)
-            showNotification('Thank you for your message! We\'ll get back to you soon.', 'success');
-            
-            // Reset form
-            contactForm.reset();
+            // Simulate form submission
+            setTimeout(() => {
+                showNotification('Thank you for your message! We\'ll get back to you soon.', 'success');
+                contactForm.reset();
+                
+                // Reset button state
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
         });
 
         // Notification system
         function showNotification(message, type = 'info') {
             const notification = document.createElement('div');
             notification.className = `notification ${type}`;
-            notification.innerHTML = `
-                <div style="
-                    position: fixed;
-                    top: 20px;
-                    right: 20px;
-                    background: ${type === 'success' ? 'var(--primary-red)' : 'var(--gray-800)'};
-                    color: white;
-                    padding: 1rem 1.5rem;
-                    border-radius: 10px;
-                    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-                    z-index: 10001;
-                    animation: slideInRight 0.3s ease;
-                ">
-                    ${message}
-                </div>
-            `;
+            notification.textContent = message;
             
             document.body.appendChild(notification);
             
@@ -1387,22 +1471,6 @@
                 notification.remove();
             }, 5000);
         }
-
-        // Add slide-in animation for notifications
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideInRight {
-                from {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-            }
-        `;
-        document.head.appendChild(style);
 
         // Counter animation for stats
         function animateCounters() {
@@ -1426,7 +1494,7 @@
         }
 
         // Trigger counter animation when about section is visible
-        const aboutSection = document.querySelector('.about');
+        const aboutSection = document.querySelector('#about');
         const aboutObserver = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1440,232 +1508,16 @@
             aboutObserver.observe(aboutSection);
         }
 
-        // Parallax effect for hero section
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const heroCircle = document.querySelector('.hero-circle');
-            
-            if (heroCircle && scrolled < window.innerHeight) {
-                heroCircle.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
-
-        // Dynamic typing effect for hero title (optional enhancement)
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            element.innerHTML = '';
-            
-            function typing() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(typing, speed);
-                }
-            }
-            typing();
+        // Handle touch devices
+        if ('ontouchstart' in window) {
+            document.body.classList.add('touch-device');
         }
 
-        // Enhanced Bizcontrol Pro interactions
-        document.querySelectorAll('[href="#bizcontrol"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Add special animation for Bizcontrol links
-                const targetElement = document.querySelector('#bizcontrol');
-                if (targetElement) {
-                    targetElement.style.transform = 'scale(0.98)';
-                    targetElement.style.transition = 'transform 0.3s ease';
-                    
-                    setTimeout(() => {
-                        targetElement.style.transform = 'scale(1)';
-                        const headerHeight = 80;
-                        const targetPosition = targetElement.offsetTop - headerHeight;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }, 100);
-                }
-            });
-        });
+        // Prevent horizontal scroll
+        document.body.style.overflowX = 'hidden';
+        document.documentElement.style.overflowX = 'hidden';
 
-        // Bizcontrol Pro demo interaction
-        document.querySelectorAll('[href="#bizcontrol-demo"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                showNotification('🚀 Bizcontrol Pro demo coming soon! Contact us to get early access.', 'success');
-            });
-        });
-
-        // Add pulsing animation to Bizcontrol CTA buttons
-        const bizcontrolCTAs = document.querySelectorAll('a[href="#bizcontrol"], a[href="#bizcontrol-demo"]');
-        bizcontrolCTAs.forEach(cta => {
-            setInterval(() => {
-                cta.style.transform = 'scale(1.02)';
-                setTimeout(() => {
-                    cta.style.transform = 'scale(1)';
-                }, 200);
-            }, 3000);
-        });
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-15px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Lazy loading for better performance
-        const lazyImages = document.querySelectorAll('img[data-src]');
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.classList.remove('lazy');
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
-
-        lazyImages.forEach(img => imageObserver.observe(img));
-
-        // Add custom cursor effects for interactive elements
-        const interactiveElements = document.querySelectorAll('.btn-primary, .btn-secondary, .cta-btn, .service-card');
-        
-        interactiveElements.forEach(element => {
-            element.addEventListener('mouseenter', function() {
-                document.body.style.cursor = 'pointer';
-            });
-            
-            element.addEventListener('mouseleave', function() {
-                document.body.style.cursor = 'default';
-            });
-        });
-
-        // Performance optimization: Debounced scroll handler
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
-
-        // Apply debounced scroll handler
-        const debouncedScrollHandler = debounce(function() {
-            // Header scroll effect
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-            
-            // Parallax effect
-            const scrolled = window.pageYOffset;
-            const heroCircle = document.querySelector('.hero-circle');
-            
-            if (heroCircle && scrolled < window.innerHeight) {
-                heroCircle.style.transform = `translateY(${scrolled * 0.3}px)`;
-            }
-        }, 10);
-
-        window.addEventListener('scroll', debouncedScrollHandler);
-
-        // Add loading states for form submission
-        const submitBtn = document.querySelector('.submit-btn');
-        const originalText = submitBtn.textContent;
-
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Show loading state
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-            submitBtn.style.opacity = '0.7';
-            
-            // Simulate API call delay
-            setTimeout(() => {
-                showNotification('Thank you for your message! We\'ll get back to you soon.', 'success');
-                contactForm.reset();
-                
-                // Reset button state
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-                submitBtn.style.opacity = '1';
-            }, 2000);
-        });
-
-        // Enhanced mobile experience
-        function handleTouchDevices() {
-            if ('ontouchstart' in window) {
-                document.body.classList.add('touch-device');
-                
-                // Add touch-friendly hover states
-                const hoverElements = document.querySelectorAll('.service-card, .btn-primary, .btn-secondary');
-                
-                hoverElements.forEach(element => {
-                    element.addEventListener('touchstart', function() {
-                        this.classList.add('touch-active');
-                    });
-                    
-                    element.addEventListener('touchend', function() {
-                        setTimeout(() => {
-                            this.classList.remove('touch-active');
-                        }, 300);
-                    });
-                });
-            }
-        }
-
-        handleTouchDevices();
-
-        // Accessibility improvements
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                // Close mobile menu on escape
-                navMenu.classList.remove('active');
-                menuIcon.textContent = '☰';
-            }
-        });
-
-        // Add skip to main content link for screen readers
-        const skipLink = document.createElement('a');
-        skipLink.href = '#home';
-        skipLink.textContent = 'Skip to main content';
-        skipLink.className = 'skip-link';
-        skipLink.style.cssText = `
-            position: absolute;
-            top: -40px;
-            left: 6px;
-            background: var(--primary-red);
-            color: white;
-            padding: 8px;
-            text-decoration: none;
-            border-radius: 4px;
-            z-index: 10002;
-            transition: top 0.3s;
-        `;
-        
-        skipLink.addEventListener('focus', function() {
-            this.style.top = '6px';
-        });
-        
-        skipLink.addEventListener('blur', function() {
-            this.style.top = '-40px';
-        });
-        
-        document.body.insertBefore(skipLink, document.body.firstChild);
-
-        console.log('FineSpot Group Website Loaded Successfully! 🚀');
+        console.log('FineSpot Group Website Loaded Successfully!');
     </script>
 </body>
 </html>
